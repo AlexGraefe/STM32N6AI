@@ -1,0 +1,33 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "stlinkgdbtarget",
+            "request": "launch",
+            "name": "STM326570-DK Debug",
+            "origin": "snippet",
+            "cwd": "${workspaceFolder}",
+            "preBuild": "${command:st-stm32-ide-debug-launch.build}",
+            "runEntry": "BOOT_Application", // Set in BOOT_Application
+            "deviceCore": "Cortex-M55",
+            "svdPath": "/opt/st/stm32cubeclt_1.20.0/STMicroelectronics_CMSIS_SVD/STM32N657.svd", // Replace with your .svd path
+            "imagesAndSymbols": [
+                {
+                    "symbolFileName": "${workspaceFolder}/Appli/build/Appli.elf", // Replace this with your path and your_Appli.elf symbol
+                    "imageFileName": "${workspaceFolder}/Appli/build/Appli-trusted.elf",
+                },
+
+                {
+                    "symbolFileName": "${workspaceFolder}/FSBL/build/FSBL.elf", // Replace this with your path and your_FSBL.elf symbol
+                    "imageFileName": "${workspaceFolder}/FSBL/build/FSBL.elf", // Replace this with your path and your_FSBL.elf image
+                }
+            ],
+            "serverExtLoader": [
+                {
+                    "loader": "/usr/local/STMicroelectronics/STM32Cube/STM32CubeProgrammer/bin/ExternalLoader/MX66UW1G45G_STM32N6570-DK.stldr", // Replace with your external loader path
+                    "initialize": false
+                }
+            ]
+        }
+    ]
+}
